@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        "use strict";
+
+        let num = +prompt("Введите число от 0 до 999");
+
+        function NumToObj(num) {
+            if (isNaN(num)) {
+                console.error("It's not a number");
+                return {};
+            } else if (!Number.isInteger(num)) {
+                console.error('Number is not integer');
+                return {};
+            } else if (num > 999 || num < 0) {
+                console.error('Number isn\'t from 0 to 999');
+                return {};
+            } else {
+                let k = Math.floor(num / 100);
+                let m = Math.floor((num - (k * 100)) / 10);
+                let l = num - (k * 100) - (m * 10);
+                let obj = {};
+                return obj = {
+                    hundreds: k,
+                    tens: m,
+                    units: l
+                }
+            }
+        }
+
+        console.log(NumToObj(num));
+    </script>
+</body>
+</html>

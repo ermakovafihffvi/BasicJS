@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        "use strict";
+        /*.................................es5*/
+        /*cоздали функцию-конструктор Post*/
+        function Post(author, text, date) {
+            this.author = author;
+            this.text = text;
+            this.date = date;
+        }
+
+        /*добавили к функции-конструктору метод edit через задание прототипа*/
+        Post.prototype.edit = function (text) {
+            this.text = text;
+        }
+
+        /*создали функцию-конструктор AttachedPost путём добавления к Post 
+        свойства highlighted*/
+        function AttachedPost(author, text, date) {
+            Post.call(this, author, text, date);
+            this.highlighted = false;
+        }
+
+        /*скопировали методы из Post в AttachedPost, так чтобы AttachedPost.prototype и Post.prototype были разными прототипами*/
+        AttachedPost.prototype = Object.create(Post.prototype);
+        /*переименовали constructor обратно*/
+        AttachedPost.prototype.constructor = AttachedPost;
+
+        /*добавили новый метод для AttachedPost*/
+        AttachedPost.prototype.makeTextHighlighted = function () {
+            this.highlighted = true;
+        }
+
+        const post1 = new Post('Alex', 'hello world', '25.09.2019');
+        console.log(post1);
+        const post2 = new post1.constructor('Max', 'hello friends', '27.09.2019');
+        post2.edit('goodbye!');
+        console.log(post2);
+
+        const post3 = new AttachedPost('Alex', 'hello world', '25.09.2019');
+        post3.makeTextHighlighted();
+        console.log(post3);
+
+
+    </script>
+</body>
+</html>
