@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        "use srtict";
+        /*.................................es6*/
+        class Product6 {
+            constructor (name, price) {
+                this.name = name;
+                this.price = price;
+            }
+            make25PercentDiscount() {
+                this.price = this.price * (100 - 25) / 100;
+            }
+        }
+
+        const prod1 = new Product6('dress', 15);
+        console.log(prod1);
+        const prod2 = new Product6('shorts', 5);
+        prod2.make25PercentDiscount();
+        console.log(prod2);
+
+        /*.................................es5*/
+        function Product5(name, price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        Product5.prototype.make25PercentDiscount = function() {
+            this.price = this.price * (100 - 25) / 100;
+        }
+
+        const prod3 = new Product5('costume', 25);
+        console.log(prod3);
+        const prod4 = new Product5('shoes', 30);
+        prod4.make25PercentDiscount();
+        console.log(prod4);
+    </script>
+</body>
+</html>
